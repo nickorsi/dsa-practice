@@ -13,11 +13,12 @@ var twoSum = function(nums, target) {
         // If equal
         if(sorted[left] + sorted[right] === target) {
         // Find index of first value
-            const firstInd = nums.indexOf(sorted[left]);
-        // Find last index of second value
-            const secondInd = nums.lastIndexOf(sorted[right]);
-        // Return array of indeces
-            return [firstInd, secondInd];
+        //     const firstInd = nums.indexOf(sorted[left]);
+        // // Find last index of second value
+        //     const secondInd = nums.lastIndexOf(sorted[right]);
+        // // Return array of indeces
+        //     return [firstInd, secondInd];
+            return [nums.indexOf(sorted[left]), nums.lastIndexOf(sorted[right])];
         }
         // If greater, move right down
         if(sorted[left] + sorted[right] > target) {
