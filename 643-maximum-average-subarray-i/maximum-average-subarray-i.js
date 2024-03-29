@@ -13,16 +13,16 @@ var findMaxAverage = function(nums, k) {
 //     Declare right = 0
 //     Declare left = k
 //     Declare maxSum = currSum
-    // let right = 0;
+    let right = 0;
     let left = k;
     let maxSum = currSum;
 //     While pointer less than/equal to length of nums
     while (left < nums.length) {
 //      maxSum = max(maxSum, currSum-num[right]+num[left])
-        currSum = currSum - nums[left-k] + nums[left]
+        currSum = currSum - nums[right] + nums[left]
         maxSum = Math.max(maxSum, currSum);
 //      Increment right and left
-        // right++;
+        right++;
         left++;
     }
 //     Return maxSum/k
