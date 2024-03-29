@@ -42,7 +42,7 @@ var longestOnes = function(nums, k) {
     for(const num of nums) {
 //      if num = 0 increment zeroCount
         if (num === 0) zeroCount++;
-//      while zeroCount > k
+//      if zeroCount > k, preserves the max length of the valid subarray
         if (zeroCount > k) {
 //          if nums[windowStart] is 0, decrement zeroCount
             if (nums[windowStart] === 0) zeroCount--;
