@@ -17,7 +17,7 @@ class Solution:
                 else:
                     root.right = helper(root.right, val)
             
-            if root.val > val:
+            if val < root.val:
                 if root.left:
                     helper(root.left, val)
                 else:
