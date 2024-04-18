@@ -17,20 +17,22 @@ class Solution:
 #       Then do DFS traversal starting at node source to see if destination is ever reached while avoiding viewing an repeated nodes
 
         seen = set()
-        valid_path = False
+        # valid_path = False
         def dfs(n: int):
             if destination in nodes_to_neighbors[n]: 
-                nonlocal valid_path
-                valid_path = True
-                return
+                # nonlocal valid_path
+                # valid_path = True
+                return True
             if n not in seen:
                 seen.add(n)
                 for neighbor in nodes_to_neighbors[n]:
-                    dfs(neighbor)
+                    if dfs(neighbor):
+                        return True
+            return False
         
-        dfs(source)
+        return dfs(source)
         
-        return valid_path
+        # return valid_path
                 
         
                 
