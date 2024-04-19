@@ -15,20 +15,19 @@ class Solution:
             else:
                 node_hash[node2] = [node1]
         
-        path_count = 0
+        self.path_count = 0
         restricted_set = set(restricted)
         seen = set()
 # Traverse nodes using DFS
         def dfs(node: int):
-            nonlocal path_count
 # If node not seen, add it
             if node not in seen:
                 seen.add(node)
 # If node is not restricted, increment curr_path_count and recurse through it's neighbors
                 if node not in restricted_set:
-                    path_count += 1
+                    self.path_count += 1
                     for neighbor in node_hash[node]:
                         dfs(neighbor)
         dfs(0)    
 # Return max_path_count
-        return path_count
+        return self.path_count
