@@ -15,7 +15,10 @@ class Solution:
         queue = deque()
         queue.append([start_m, start_n, 0])
 
-        maze[start_m][start_n] = "+"
+        # maze[start_m][start_n] = "+"
+
+        seen = set()
+        seen.add((start_m, start_n))
 
         while queue:
             m, n, curr_path = queue.popleft()
@@ -23,10 +26,10 @@ class Solution:
             for y, x in moves:
                 new_m = m + y
                 new_n = n + x
-                if is_valid(new_m, new_n):
+                if is_valid(new_m, new_n) and (new_m, new_n) not in seen:
                     if is_exit(new_m, new_n):
                         return curr_path + 1
-                    maze[new_m][new_n] = '+'
+                    seen.add((new_m, new_n))
                     queue.append([new_m, new_n, curr_path + 1])
 
         return -1
