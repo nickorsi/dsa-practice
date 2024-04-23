@@ -18,19 +18,32 @@ class Solution:
         # maze[start_m][start_n] = "+"
 
         seen = set()
-        seen.add((start_m, start_n))
+        # seen.add((start_m, start_n))
+
+        # while queue:
+        #     m, n, curr_path = queue.popleft()
+
+        #     for y, x in moves:
+        #         new_m = m + y
+        #         new_n = n + x
+        #         if is_valid(new_m, new_n) and (new_m, new_n) not in seen:
+        #             if is_exit(new_m, new_n):
+        #                 return curr_path + 1
+        #             seen.add((new_m, new_n))
+        #             queue.append([new_m, new_n, curr_path + 1])
 
         while queue:
             m, n, curr_path = queue.popleft()
+            seen.add((m, n))
 
-            for y, x in moves:
-                new_m = m + y
-                new_n = n + x
-                if is_valid(new_m, new_n) and (new_m, new_n) not in seen:
-                    if is_exit(new_m, new_n):
-                        return curr_path + 1
-                    seen.add((new_m, new_n))
-                    queue.append([new_m, new_n, curr_path + 1])
-
+            if not (m == entrance[0] and n == entrance[1]) and is_exit(m, n):
+                return curr_path
+            else:
+                for y, x in moves:
+                    new_m = m + y
+                    new_n = n + x
+                    if is_valid(new_m, new_n) and (new_m, new_n) not in seen:
+                        queue.append([new_m, new_n, curr_path + 1])
+                        seen.add((new_m, new_n))
         return -1
             
