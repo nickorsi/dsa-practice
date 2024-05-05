@@ -26,19 +26,19 @@ class Solution:
         self.max_bomb_count = 1
      
             
-        def bfs(bomb: int):
+        def dfs(bomb: int):
             for neighbor in bomb_hash[bomb]:
                 if neighbor not in self.seen:
                     self.seen.add(neighbor)
                     self.curr_bomb_count += 1
                     if neighbor in bomb_hash:
-                        bfs(neighbor)
+                        dfs(neighbor)
                     
         for bomb in bomb_hash:
             self.seen = set()
             self.seen.add(bomb)
             self.curr_bomb_count = 1
-            bfs(bomb)
+            dfs(bomb)
             self.max_bomb_count = max(self.max_bomb_count, self.curr_bomb_count)
         return self.max_bomb_count
                 
