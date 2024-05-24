@@ -10,11 +10,11 @@ class Solution:
         while truckSize and boxTypesSorted:
             boxes, units = boxTypesSorted.pop()
             
-            while boxes and truckSize:
-                boxes -= 1
-                truckSize -= 1
-                
-                ans += units
-            
+            if boxes < truckSize:
+                ans += boxes * units
+                truckSize = truckSize - boxes
+            else:
+                ans += truckSize * units
+                truckSize = 0
         return ans
                 
