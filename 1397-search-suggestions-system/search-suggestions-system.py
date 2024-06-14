@@ -39,8 +39,6 @@ class Trie:
         return self.results
         
 
-
-
 class Solution:
     def suggestedProducts(self, products: List[str], searchWord: str) -> List[List[str]]:
         product_trie = Trie()
