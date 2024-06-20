@@ -83,31 +83,22 @@ var increasingTriplet = function(nums) {
 
 // Everything above either timed out or was wrong
 // Keep track of two nubers, first and second
-//     let first = Number.POSITIVE_INFINITY;
-//     let second = Number.POSITIVE_INFINITY;
-//     for(let i = 0; i < nums.length; i++) {
-// // first is assigned to the first number AND every number after that is smaller than this
-//         console.log(first, second, nums[i])
-//         if(nums[i] <= first) {
-//             first = nums[i];
-//         } 
-// // second is assigned to the first nuber larger than first and every number after that is smaller to second and larger than first
-//         else if(nums[i] <= second) {
-//             second = nums[i];
-//         } 
-//         else {
-//             return true;
-//         }
-// // Return true otherwise 
-//     }
-// // Return false otherwise
-//     return false;
-    let a = Infinity;
-    let b = Infinity;
-    for(let i=0; i<nums.length; i++) {
-        if(nums[i] <= a) a = nums[i];
-        if(nums[i] > a && nums[i] <= b) b = nums[i];
-        if(nums[i] > a && nums[i] > b) return 1;
+    let first = Number.POSITIVE_INFINITY;
+    let second = Number.POSITIVE_INFINITY;
+    for(let i = 0; i < nums.length; i++) {
+// first is assigned to the first number AND every number after that is smaller than this
+        if(nums[i] <= first) {
+            first = nums[i];
+        } 
+// second is assigned to the first nuber larger than first and every number after that is smaller to second and larger than first
+        else if(nums[i] <= second) {
+            second = nums[i];
+        } 
+        else {
+            return true;
+        }
+// Return true otherwise 
     }
-    return 0;
+// Return false otherwise
+    return false;
 }
