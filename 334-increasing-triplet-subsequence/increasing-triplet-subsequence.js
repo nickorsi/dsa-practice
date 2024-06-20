@@ -83,19 +83,19 @@ var increasingTriplet = function(nums) {
 
 // Everything above either timed out or was wrong
 // Keep track of two nubers, first and second
-    let first;
-    let second;
+    let first = Number.POSITIVE_INFINITY;
+    let second = Number.POSITIVE_INFINITY;
     for(let i = 0; i < nums.length; i++) {
 // first is assigned to the first number AND every number after that is smaller than this
         console.log(first, second, nums[i])
-        if(first === undefined || nums[i] < first) {
+        if(nums[i] <= first) {
             first = nums[i];
         } 
 // second is assigned to the first nuber larger than first and every number after that is smaller to second and larger than first
-        else if((second === undefined || nums[i] < second) && nums[i] > first) {
+        else if(nums[i] <= second) {
             second = nums[i];
         } 
-        if (second !== undefined && nums[i] > second) {
+        else {
             return true;
         }
 // Return true otherwise 
