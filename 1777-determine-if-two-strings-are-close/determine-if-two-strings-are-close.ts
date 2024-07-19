@@ -20,16 +20,12 @@ function closeStrings(word1: string, word2: string): boolean {
         }
     }
     
-    console.log(freqCount1, freqCount2);
-
     for(const key in freqCount1) {
         if(!(key in freqCount2)) return false;
     }
 
     const counts1 = Object.values(freqCount1).sort((a,b) => a-b);
     const counts2 = Object.values(freqCount2).sort((a,b) => a-b);
-
-    console.log(counts1, counts2);
 
     for(let i = 0; i < counts1.length; i ++) {
         if(counts1[i] !== counts2[i]) {
