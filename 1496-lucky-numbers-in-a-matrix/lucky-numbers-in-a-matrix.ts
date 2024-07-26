@@ -1,24 +1,22 @@
 function luckyNumbers (matrix: number[][]): number[] {
-    // Define rowMins as an array m long with positive infintinty values and colMaxs n long with 0 values
-    const rowMins = new Array(matrix.length).fill(Number.POSITIVE_INFINITY);
-    const colMaxs = new Array(matrix[0].length).fill(0);
-    // Iterate through matrix row and col
+    // Define luckyNums as a num array and minRow and maxCol as arrays of length m and n respectively filled with infinity_pos and infinity_neg respectively
+    const luckyNums: number[] = [];
+    const minRow: number[] = new Array(matrix.length).fill(Number.POSITIVE_INFINITY);
+    const maxCol: number[] = new Array(matrix[0].length).fill(Number.NEGATIVE_INFINITY);
+    // Iterate through row m
     for(let row = 0; row < matrix.length; row ++) {
-        let rowMin = rowMins[row]
+        // Iterate through col n
         for(let col = 0; col < matrix[0].length; col ++) {
-        // If current value is smaller than value in rowMins at row, replace
-            if(matrix[row][col] < rowMins[row]) rowMins[row] = matrix[row][col];
-        // If current value is larger than value in colMaxs at col, replace
-            if(matrix[row][col] > colMaxs[col]) colMaxs[col] = matrix[row][col];
+            // If value at matrix[m][n] is smaller than minRow[m] then replace
+            if (matrix[row][col] < minRow[row]) minRow[row] = matrix[row][col];
+            // If value at matrix[m][n] is larger than maxcol[n] then replace
+            if (matrix[row][col] > maxCol[col]) maxCol[col] = matrix[row][col];
         }
     }
-    const luckyNums: number[] = [];
-    // Iterate through rowMins
-    for(const min of rowMins) {
-    // If value in colMaxs, add to luckyNums array
-        if(colMaxs.includes(min)) {
-            luckyNums.push(min)
-        }
+    // Iterate through minRow
+    for(const num of minRow) {
+        // If in maxCol push into luckyNums
+        if(maxCol.includes(num)) luckyNums.push(num);
     }
     // Return luckyNums
     return luckyNums;
