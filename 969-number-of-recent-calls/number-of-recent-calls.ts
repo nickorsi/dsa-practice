@@ -7,9 +7,10 @@ class RecentCounter {
 
     ping(t: number): number {
         this.set.add(t);
+        // Don't need to loop through entire set, could do while loop
         for(const storedT of this.set) {
             if (storedT < t - 3000) {
-                this.set.delete(storedT)
+                this.set.delete(storedT);
             }
         }
         return this.set.size;
