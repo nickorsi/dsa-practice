@@ -78,4 +78,11 @@ function oddEvenList(head: ListNode | null): ListNode | null {
         // Can now just return the head
         return head;
     }   
+
+    /**
+        The above is way more complex than needed. Was tripped out by the space complexity needing to be constant 
+        and thought building an evenLL would lead to a space complexity of o(n) but just using pointers to establish
+        a new reference to existing data, it isn't creating new memory allocations that increase with the input size 
+        like an array would.
+     */ 
 };
