@@ -59,10 +59,10 @@ class Solution:
             queue.append(current_node.val)
             current_node = current_node.next
         # print(count, int(count/2))
+# Then iterate through half the count, summing the stack and queue values and keeping track of the max
         max_count = float('-inf')
         for _ in range(int(count/2)):
             max_count = max(max_count, stack.pop() + queue.popleft())
 
-        return max_count
-# Then iterate through half the count, summing the stack and queue values and keeping track of the max
 # Return the max
+        return max_count
