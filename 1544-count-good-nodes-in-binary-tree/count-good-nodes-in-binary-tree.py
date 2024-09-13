@@ -12,7 +12,7 @@ class Solution:
         self.good_node_count = 0
         # find_nodes function takes in node, level, and max_path_values array
         def _find_good_nodes(node: TreeNode, level: int, max_path_values: List[int]) -> None:
-            print(node.val, level, max_path_values, self.good_node_count)
+            # print(node.val, level, max_path_values, self.good_node_count)
             # If current value is greater than or equal to last value on path_values
             if node.val >= max_path_values[-1][0]:
                 # Increment count
@@ -37,5 +37,5 @@ class Solution:
                 max_path_values.pop()
         # Return good_node_count
         _find_good_nodes(root, 0, [[root.val, 0]])
-        print(self.good_node_count)
+        # print(self.good_node_count)
         return self.good_node_count
