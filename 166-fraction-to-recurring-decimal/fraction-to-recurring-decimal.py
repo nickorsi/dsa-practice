@@ -1,19 +1,20 @@
 import decimal
 class Solution:
     def fractionToDecimal(self, numerator: int, denominator: int) -> str:
-        negative = False
         if denominator == 0:
             return "Denominator is zero, invalid"
         if numerator == 0:
             return "0"
         if numerator % denominator == 0 :
             return str(int(numerator / denominator))
+        
+        
+        ans = ""
         if (numerator < 0 and denominator >= 0) or (denominator < 0 and numerator >=0):
-            negative = True
+            ans += "-"
 
         seen: List[(int, int)] = []
 
-        ans = ""
         ans += str(abs(numerator) // abs(denominator)) + "."
         decimal_string = ""
         new_num = (abs(numerator) % abs(denominator)) * 10
@@ -29,8 +30,5 @@ class Solution:
             seen.append((new_num, quotient))
             decimal_string += str(quotient)
             new_num = (new_num % new_denom) * 10
-
-        if negative:
-            return "-" + ans + decimal_string
 
         return ans + decimal_string
