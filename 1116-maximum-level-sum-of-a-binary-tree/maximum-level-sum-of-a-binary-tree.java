@@ -53,9 +53,6 @@ class Solution {
             } 
             // Need to account for instance where this is the last node
             if(queue.size() == 0) {
-                System.out.println("Empty queue");
-                System.out.println("levelSum= " + levelSum);
-                System.out.println("maxSum= " + this.maxSum);
                 if(levelSum > this.maxSum) {
                     this.maxSum = levelSum;
                     this.minLevel = currentLevel;
