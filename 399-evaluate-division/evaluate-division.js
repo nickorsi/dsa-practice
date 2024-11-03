@@ -72,7 +72,7 @@ function findValue(var1, var2, equationMap) {
     function _traverseRelations(equationMap, currentTotalValue, relatingVars, targetVar) {
         // console.log(targetVar, relatingVars, totalValue);
         for(const [newVar, value] of relatingVars) {
-            console.log("newVar= ", newVar);
+            // console.log("newVar= ", newVar);
             if(newVar == targetVar) {
                 totalValue = currentTotalValue * value;
                 valueFound = true;
