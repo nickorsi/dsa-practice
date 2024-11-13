@@ -19,14 +19,14 @@ class Solution:
         if len(digits) == 0: return letter_combos
 
         curr_letter_combos = self.d[digits[0]]
-        print(curr_letter_combos)
+        # print(curr_letter_combos)
         new_digits = digits[1:]
-        print(new_digits)
+        # print(new_digits)
 
         next_letter_combos = self.build_letter_combos(new_digits)
-        print(next_letter_combos)
+        # print(next_letter_combos)
         if len(next_letter_combos) == 0: return curr_letter_combos
-        
+
         for curr_letter_combo in curr_letter_combos:
             for next_letter_combo in next_letter_combos:
                 letter_combos.append(curr_letter_combo + next_letter_combo)
