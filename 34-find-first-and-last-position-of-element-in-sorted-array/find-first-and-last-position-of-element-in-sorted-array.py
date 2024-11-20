@@ -33,9 +33,10 @@ class Solution:
                 right2 = mid
             else:
                 left2 = mid + 1
-        print(left2)
+        # Check for case when value is at the end, in which case left is at the value
         if left2 < len(nums) and left2 >=0 and nums[left2] == target:
             ans[1] = left2
+        # Otherwise left is pointing at the INSERTION point, in which case the value is before the pointer
         elif left2 - 1 < len(nums) and left2 - 1 >= 0 and nums[left2 - 1] == target: 
             ans[1] = left2 - 1
 
