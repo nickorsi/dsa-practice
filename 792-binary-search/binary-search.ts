@@ -4,7 +4,7 @@ function search(nums: number[], target: number): number {
 
     while(left <= right) {
         const mid = Math.floor((right + left) / 2);
-        console.log(left, right, mid)
+        // console.log(left, right, mid)
 
         if(nums[mid] === target) return mid;
         else if(nums[mid] > target) {
