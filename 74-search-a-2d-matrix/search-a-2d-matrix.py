@@ -9,8 +9,8 @@ class Solution:
             # How to get row and col from mid? 
             row = mid // n
             col = mid % n 
-            print(m, n)
-            print(left, right, mid, row, col)
+            # print(m, n)
+            # print(left, right, mid, row, col)
             if matrix[row][col] == target: return True
             if matrix[row][col] > target:
                 right = mid - 1
