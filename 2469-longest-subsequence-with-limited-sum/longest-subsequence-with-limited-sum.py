@@ -12,7 +12,7 @@ class Solution:
             else: 
                 prefix_nums.append(nums[i] + prefix_nums[i - 1])
         
-        print(prefix_nums)
+        # print(prefix_nums)
         
         ans: List[int] = []
             
