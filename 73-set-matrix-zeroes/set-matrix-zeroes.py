@@ -28,4 +28,9 @@ class Solution:
                 seen_cols.add(col)
                 for row_index in range(m):
                     matrix[row_index][col] = 0
+
+        # Above approach uses additional memory for tracking zero locations
+        # Can use NO additional memory by doing 2 iterations: 
+        # 1st iteration find all zeros and "flag" the 1st cell in the row and col with a 0
+        # 2nd iteration looks at all the first cells in row or col for 0, then proceeds to convert rest of cells to 0 as applicable
         
