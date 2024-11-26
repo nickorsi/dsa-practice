@@ -12,60 +12,60 @@ function canFinish(numCourses: number, prerequisites: number[][]): boolean {
             courseMap.set(course, [prereq]);
         }
     }
-    console.log(courseMap);
+    // console.log(courseMap);
     // Iterate through the the map
     const seenCourses: Set<number> = new Set();
 
     for(const [course, preqs] of courseMap) {
 
         if(!seenCourses.has(course)) {
-            console.log("Start BFS, course= ", course)
+            // console.log("Start BFS, course= ", course)
             // seenCourses.add(course);
             if(!dfs(course, courseMap, seenCourses, new Set())) return false;
         }
     }
-        // Then do dfs or bfs...will do bfs to find cycle quickly? Should have done dfs
+        // Then do dfs or bfs...will do bfs to find cycle quickly? Should have done dfs, want to check all the way through each specifc course branch and not have the levels affect each other
         // Keep track of courses taken during bfs
     // Return coursesTaken === numCourses
     return true;
 };
 
-function bfs(course: number, courseMap: Map<number, Array<number>>, seenCourses: Set<number>, courseConflicts: Set<number>): boolean {
-    const queue: Array<number> = [];
-    queue.push(course)
+// function bfs(course: number, courseMap: Map<number, Array<number>>, seenCourses: Set<number>, courseConflicts: Set<number>): boolean {
+//     const queue: Array<number> = [];
+//     queue.push(course)
 
-    while(queue.length > 0) {
-        const currentCourse = queue.shift();
-        console.log("currentCourse= ", currentCourse);
+//     while(queue.length > 0) {
+//         const currentCourse = queue.shift();
+//         console.log("currentCourse= ", currentCourse);
 
-        const prereqs = courseMap.get(currentCourse);
+//         const prereqs = courseMap.get(currentCourse);
 
-        for(const prereq of prereqs) {
-            console.log("preq= ", prereq);
-            console.log("courseConflicts= ", courseConflicts);
-            if(courseConflicts.has(prereq)) {
-                console.log("Here");
-                return false;
-            }
-            courseConflicts.add(prereq)
-            seenCourses.add(prereq);
-            if(courseMap.has(prereq)) {
-                queue.push(prereq);
-            }
+//         for(const prereq of prereqs) {
+//             console.log("preq= ", prereq);
+//             console.log("courseConflicts= ", courseConflicts);
+//             if(courseConflicts.has(prereq)) {
+//                 console.log("Here");
+//                 return false;
+//             }
+//             courseConflicts.add(prereq)
+//             seenCourses.add(prereq);
+//             if(courseMap.has(prereq)) {
+//                 queue.push(prereq);
+//             }
 
-        }
-    }
-    return true;
-}
+//         }
+//     }
+//     return true;
+// }
 
 function dfs(course: number, courseMap: Map<number, Array<number>>, seenCourses: Set<number>, courseConflicts: Set<number>) {
-    console.log("course= ", course);
+    // console.log("course= ", course);
     if(!courseMap.has(course)) return true;
     if(courseConflicts.has(course)) return false;
     courseConflicts.add(course);
 
     for(const preq of courseMap.get(course)) {
-        console.log("seenCourses= ", seenCourses);
+        // console.log("seenCourses= ", seenCourses);
         if(seenCourses.has(preq)) continue;
         const newCourseConflicts = new Set(courseConflicts)
         if(!dfs(preq, courseMap, seenCourses, newCourseConflicts)) {
