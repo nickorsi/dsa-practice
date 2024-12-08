@@ -22,7 +22,7 @@ class Solution:
                 current_value_int = int(current_value)
                 # print("current_value_int= ", current_value_int)
                 # print("\n")
-                grid_value = (row // 3) * 3 + (col // 3) + 1
+                grid_value = (row // 3) * 3 + (col // 3)
                 # Check row
                 if row in row_values:
                     values = row_values.get(row)
