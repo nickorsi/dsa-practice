@@ -63,10 +63,12 @@ class Solution:
     #                     board[row][col] += fill_value
     #     return
 
-# Above times out, can do this WITHOUT a board. 
-# Need to simply keep track of queens placed in rows, cols, diags and anti_diags
-
+        # Above times out, can do this WITHOUT a board. 
+        # Need to simply keep track of queens placed in rows, cols, diags and anti_diags
+        # Queens can only occupy unique rows/cols/diags/anti_diags, otherwise will be in another attack path
+        # So can assume the queen will be in a unique row and track as a number in recursion, the rest can be kept track of as sets
         def backtrack2(rows: int, cols: Set[int], diags: Set[int], anti_diags: Set[int]) -> None:
+            # Base case is row == n
             if rows == n:
                 self.solution_count += 1
                 return
@@ -88,10 +90,7 @@ class Solution:
                     anti_diags.remove(anti_diag)
 
             return
-
+        # Need to start at 0 with rows (No game pieces) otherwise will double up final result
         backtrack2(0, set(), set(), set())
         return self.solution_count
         
-# Queens can only occupy unique rows/cols/diags/anti_diags, otherwise will be in another attack path
-# So can assume the queen will be in a unique row and track as a number in recursion, the rest can be kept track of as sets
-# Base case is row == n
