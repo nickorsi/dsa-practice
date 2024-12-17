@@ -10,8 +10,8 @@ class Solution:
             # Need to determine base cases:
                 # Max amount at i = 0 is nums[0]
                 # Max amount at i = 1 is either nums[0] or nums[2]
-        n: int = len(nums) - 1
-        memo: Dict[int, int] = {}
+        # n: int = len(nums) - 1
+        # memo: Dict[int, int] = {}
         # Option 1: With the way I implemented the solution (taking max value from memo) I had to pull out the base cases in the recursion 
         # and prepopulate memo with these:
         # memo[0] = nums[0]
