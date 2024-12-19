@@ -64,13 +64,13 @@ class Solution:
 
         #     return ans
 
-        # max_ans: int = -math.inf
+        # all_ans: List[int] = []
 
         # for i in range(len(nums)):
-        #     max_ans = max(max_ans, dp(i))
+        #     all_ans.append(dp(i))
 
-        # return max_ans
-
+        # return max(all_ans)
+        # Above times out, the below does not for some reason
         @cache
         def dp(i):
             ans = 1 # Base case
