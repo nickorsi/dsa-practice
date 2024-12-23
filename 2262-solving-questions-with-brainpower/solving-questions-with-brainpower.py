@@ -17,7 +17,7 @@ class Solution:
             # i == 0 then return question[i][0]
             # i == 1 then return max question[i][0], question[i-1][0]
 
-        memo: Dict[int, int] = {}
+        # memo: Dict[int, int] = {}
 
         # def dp(i: int) -> int:
         #     print("i= ", i)
@@ -53,18 +53,37 @@ class Solution:
 
         # Above gets the wrong answer on test case 27, unsure where break in logic is
         # Below is from training course, take odd approach of starting at bottom and looking forward to get the next answer
-
-        def dp(i: int) -> int:
-            if i >= len(questions):
-                return 0
-
-            if i in memo: 
-                return memo[i]
-
-            j = i + questions[i][1] + 1
-
-            memo[i] = max(questions[i][0] + dp(j), dp(i + 1)) # Is it better to take the current points plus the next available points or to skip and take next points
-
-            return memo[i]
         
-        return dp(0)
+        # memo: Dict[int, int] = {}
+
+        # def dp(i: int) -> int:
+        #     if i >= len(questions):
+        #         return 0
+
+        #     if i in memo: 
+        #         return memo[i]
+
+        #     j = i + questions[i][1] + 1
+
+        #     memo[i] = max(questions[i][0] + dp(j), dp(i + 1)) # Is it better to take the current points plus the next available points or to skip and take next points
+
+        #     return memo[i]
+        
+        # return dp(0)
+
+        # Bottom Up Approach
+
+        dp = [questions[i][0] for i in range(len(questions))]
+
+        for i in range(len(questions) - 1, -1, -1):
+            points, skip = questions[i]
+            j = i + skip + 1
+
+            if j < len(questions):
+                dp[i] = max(points + dp[j], dp[i + 1])
+            elif i + 1 < len(questions):
+                dp[i] = max(points, dp[i + 1])
+            else:
+                dp[i] = points
+        
+        return dp[0]
