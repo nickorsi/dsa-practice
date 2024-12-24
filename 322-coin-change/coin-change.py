@@ -45,24 +45,36 @@ class Solution:
 
         # Above doesn't work fails test case 51 becuase there's no guarantee the largest coin will actually be used or that is should be used to the max...
         # Do dp using amount as input, return coin count
-        memo: Dict[int, int] = {}
+        # memo: Dict[int, int] = {}
 
-        def dp(amt: int) -> int:
-            if amt == 0:
-                return 0
+        # def dp(amt: int) -> int:
+        #     if amt == 0:
+        #         return 0
 
-            if amt < 0:
-                return math.inf
+        #     if amt < 0:
+        #         return math.inf
             
-            if amt in memo:
-                return memo[amt]
+        #     if amt in memo:
+        #         return memo[amt]
 
-            memo[amt] = math.inf
+        #     memo[amt] = math.inf
 
-            for coin in coins:
+        #     for coin in coins:
                 
-                memo[amt] = min(memo[amt], 1 + dp(amt - coin))
+        #         memo[amt] = min(memo[amt], 1 + dp(amt - coin))
 
-            return memo[amt]
+        #     return memo[amt]
 
-        return dp(amount) if dp(amount) != math.inf else - 1
+        # return dp(amount) if dp(amount) != math.inf else - 1
+
+        # Bottom Up
+        dp: List[int] = [math.inf] * (amount + 1)
+        print(dp)
+        dp[0] = 0
+
+        for coin in coins:
+            for amt in range(coin, amount + 1):
+                dp[amt] = min(dp[amt], dp[amt - coin] + 1) 
+
+        print(dp)
+        return dp[amount] if dp[amount] != math.inf else - 1
