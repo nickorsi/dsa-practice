@@ -54,6 +54,7 @@ class Solution:
 
                 dp[0] = step2
                 dp[1] = step1 + step2
-
+        
+        print(dp)
         return dp[-1]
 
