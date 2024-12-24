@@ -13,20 +13,31 @@ class Solution:
             # i == 1, return 1
             # i == 2, return 2
         
-        memo: Dict[int, int] = {}
+        # memo: Dict[int, int] = {}
 
-        def dp(i: int) -> int:
-            if i == 1:
-                return 1
+        # def dp(i: int) -> int:
+        #     if i == 1:
+        #         return 1
 
-            if i == 2:
-                return 2
+        #     if i == 2:
+        #         return 2
             
-            if i in memo:
-                return memo[i]
+        #     if i in memo:
+        #         return memo[i]
 
-            memo[i] = dp(i - 1) + dp(i - 2)
+        #     memo[i] = dp(i - 1) + dp(i - 2)
 
-            return memo[i]
+        #     return memo[i]
         
-        return dp(n)
+        # return dp(n)
+
+        # Bottom Up
+        dp = [1] * n
+
+        for step in range(1, n):
+            if step == 1:
+                dp[step] = 2
+            else:
+                dp[step] = dp[step - 1] + dp[step - 2]
+        
+        return dp[n - 1]
