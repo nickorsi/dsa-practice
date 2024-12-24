@@ -32,12 +32,28 @@ class Solution:
         # return dp(n)
 
         # Bottom Up
-        dp = [1] * n
+        # dp = [1] * n
+
+        # for step in range(1, n):
+        #     if step == 1:
+        #         dp[step] = 2
+        #     else:
+        #         dp[step] = dp[step - 1] + dp[step - 2]
+        
+        # return dp[n - 1]
+
+        # Bottom Up, only track 2 steps
+
+        dp = [1] * 2
 
         for step in range(1, n):
             if step == 1:
-                dp[step] = 2
+                dp[1] = 2
             else:
-                dp[step] = dp[step - 1] + dp[step - 2]
-        
-        return dp[n - 1]
+                step1, step2 = dp
+
+                dp[0] = step2
+                dp[1] = step1 + step2
+
+        return dp[-1]
+
