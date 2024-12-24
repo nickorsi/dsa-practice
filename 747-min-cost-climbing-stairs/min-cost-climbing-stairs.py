@@ -9,16 +9,26 @@ class Solution:
         # Base Case
             # if 2 steps or less (i <= 1) then return 0
         
-        memo: Dict[int, int] = {}
+        # memo: Dict[int, int] = {}
 
-        def dp(i: int) -> int: 
-            if i <= 1:
-                return 0
+        # def dp(i: int) -> int: 
+        #     if i <= 1:
+        #         return 0
             
-            if i in memo:
-                return memo[i]
+        #     if i in memo:
+        #         return memo[i]
             
-            memo[i] = min(dp(i - 1) + cost[i - 1], dp(i - 2) + cost[i - 2])
-            return memo[i]
+        #     memo[i] = min(dp(i - 1) + cost[i - 1], dp(i - 2) + cost[i - 2])
+        #     return memo[i]
 
-        return dp(len(cost))
+        # return dp(len(cost))
+
+        # Bottom up
+        n = len(cost)
+        dp = [0] * (n + 1)
+
+        for step in range(2, n + 1):
+            dp[step] = min(dp[step - 1] + cost[step - 1], dp[step - 2] + cost[step - 2])
+
+        print(dp)
+        return dp[-1]
