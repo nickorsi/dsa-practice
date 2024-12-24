@@ -43,5 +43,4 @@ class Solution:
             dp[1] = min(step1 + cost[step - 2], step2 + cost[step - 1])
             dp[0] = step2
         
-        print(dp)
         return dp[1]
