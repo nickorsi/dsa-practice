@@ -17,33 +17,48 @@ class Solution:
                 # hold = dp(i + 1, h, k)
         # What are base cases
             # Outside of prices or no more transactions, return 0
-        memo: Dict[str, int] = {}
+        # memo: Dict[str, int] = {}
 
-        def dp(i: int, h: bool, k: int) -> int:
-            if i == len(prices) or k == 0:
+        # def dp(i: int, h: bool, k: int) -> int:
+        #     if i == len(prices) or k == 0:
+        #         return 0
+            
+        #     str_ihk: str = str(i) + str(h) + str(k)
+        #     # print(str_ihk)
+        #     if str_ihk in memo: 
+        #         return memo[str_ihk]
+            
+        #     skip = dp(i + 1, h, k)
+        #     # print("skip= ", skip)
+
+        #     if h:
+        #         sell = prices[i] + dp(i + 1, False, k - 1)
+        #         # print("sell= ", sell)
+        #         memo[str_ihk] = max(sell, skip)
+        #     else:
+        #         buy = -prices[i] + dp(i + 1, True, k)
+        #         # print("buy= ", buy)
+        #         memo[str_ihk] = max(buy, skip)
+
+
+        #     return memo[str_ihk]
+        
+        # ans = dp(0, False, k)
+        # # print(memo)
+
+        # return ans
+        
+        @cache
+        def dp(i, holding, remain):
+            if i == len(prices) or remain == 0:
                 return 0
             
-            str_ihk: str = str(i) + str(h) + str(k)
-            # print(str_ihk)
-            if str_ihk in memo: 
-                return memo[str_ihk]
-            
-            skip = dp(i + 1, h, k)
-            # print("skip= ", skip)
-
-            if h:
-                sell = prices[i] + dp(i + 1, False, k - 1)
-                # print("sell= ", sell)
-                memo[str_ihk] = max(sell, skip)
+            ans = dp(i + 1, holding, remain)
+            if holding:
+                ans = max(ans, prices[i] + dp(i + 1, False, remain - 1))
             else:
-                buy = -prices[i] + dp(i + 1, True, k)
-                # print("buy= ", buy)
-                memo[str_ihk] = max(buy, skip)
-
-
-            return memo[str_ihk]
+                ans = max(ans, -prices[i] + dp(i + 1, True, remain))
+            
+            return ans
         
-        ans = dp(0, False, k)
-        # print(memo)
-
-        return ans
+        return dp(0, False, k)
