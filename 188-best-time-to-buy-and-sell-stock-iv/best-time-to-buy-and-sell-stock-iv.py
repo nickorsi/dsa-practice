@@ -47,18 +47,36 @@ class Solution:
         # # print(memo)
 
         # return ans
-        
-        @cache
-        def dp(i, holding, remain):
-            if i == len(prices) or remain == 0:
-                return 0
+
+        # @cache
+        # def dp(i, holding, remain):
+        #     if i == len(prices) or remain == 0:
+        #         return 0
             
-            ans = dp(i + 1, holding, remain)
-            if holding:
-                ans = max(ans, prices[i] + dp(i + 1, False, remain - 1))
-            else:
-                ans = max(ans, -prices[i] + dp(i + 1, True, remain))
+        #     ans = dp(i + 1, holding, remain)
+        #     if holding:
+        #         ans = max(ans, prices[i] + dp(i + 1, False, remain - 1))
+        #     else:
+        #         ans = max(ans, -prices[i] + dp(i + 1, True, remain))
             
-            return ans
+        #     return ans
         
-        return dp(0, False, k)
+        # return dp(0, False, k)
+
+        n: int = len(prices)
+        dp: List[List[int]] = [[[0] * (k + 1) for _ in range(2)] for _ in range(n + 1)]
+
+        for i in range(n - 1, -1, -1):
+            for remain in range(1, k + 1):
+                for hold in range(2):
+                    skip = dp[i + 1][hold][remain]
+                    if hold:
+                        sell = prices[i] + dp[i + 1][0][remain - 1]
+                        # print("sell= ", sell)
+                        dp[i][hold][remain] = max(sell, skip)
+                    else:
+                        buy = -prices[i] + dp[i + 1][1][remain]
+                        # print("buy= ", buy)
+                        dp[i][hold][remain] = max(buy, skip)
+
+        return dp[0][0][k]
